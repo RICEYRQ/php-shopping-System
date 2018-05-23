@@ -19,6 +19,11 @@ $sql = "select password from manager where name='{$name}'";
 $result = $mysql->query($sql, true);
 $n = $mysql->fetch();
 
+if (strlen($name) > 20 || strlen($pas1) > 20) {
+    echo "<script language=\"JavaScript\">alert(\"输入过长\");history.back();</script>";
+    exit();
+}
+
 if ($n[0] !== null){
     echo "<script language=\"JavaScript\">alert(\"当前用户名已被注册\");history.back();</script>";
     exit();

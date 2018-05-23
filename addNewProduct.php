@@ -15,6 +15,14 @@ $mysql=new Pdo_db($msyql_config);
 $name = $_POST["name"];
 $num = $_POST["num"];
 $price = $_POST["price"];
+if (strlen($name) > 20){
+    echo "<script language=\"JavaScript\">alert(\"输入过长\");history.back();</script>";
+    exit();
+}
+if ($name === "" || $num === "" || $price === ""){
+    echo "<script language=\"JavaScript\">alert(\"存在空输入\");history.back();</script>";
+    exit();
+}
 $sql = "select productnum  from products where productname ='{$name}'";
 $result = $mysql->query($sql, true);
 $n = $mysql->fetch();
